@@ -185,7 +185,7 @@ hr{
             transition: opacity .9s ease-out;
         }
         :hover {
-            color: black;
+            color: black !important;
             opacity: 0.9;
         }
     }
