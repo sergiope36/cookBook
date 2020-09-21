@@ -64,6 +64,7 @@ export class UserRecipesComponent implements OnInit {
 
   deleteRecipe(){
       this.apiSearchRecipe.deleteRecipe(this.recipe_id).subscribe(data => this.ngOnInit());
+     
   }
 
 

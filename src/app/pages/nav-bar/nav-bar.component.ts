@@ -57,7 +57,9 @@ export class NavBarComponent implements OnInit {
       document.getElementById('edit-profile').style.visibility = 'hidden';
 
 
-      location.reload();
+      this.profileUser.picture = picture;
+      this.profileUser.password = password;
+      this.profileUser.email = email;
       
     }
 
