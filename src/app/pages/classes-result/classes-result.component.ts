@@ -14,8 +14,8 @@ import { User } from 'src/app/models/user';
 export class ClassesResultComponent implements OnInit {
   public lessons: Lessons[];
   public lessonTeacher: Lessons;
-  public teacher: User
-  public indice: number
+  public teacher: User;
+  public indice: number;
  
   constructor(private apiService: LessonServiceService, private router: Router,  private userService: UserService) { }
 

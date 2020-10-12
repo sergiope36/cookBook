@@ -1,5 +1,4 @@
 export class Ingredients {
-
     public name: string;
     public id?: number;
 

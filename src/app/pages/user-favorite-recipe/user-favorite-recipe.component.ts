@@ -16,39 +16,32 @@ import { Recipe } from 'src/app/models/recipe';
 })
 export class UserFavoriteRecipeComponent implements OnInit {
   public profile: User;
-  public favoriteRecipes
-  //public owner:User
-  public eliminar
+  public favoriteRecipes;
+  public eliminar;
   public animation: boolean;
   public followingAmount: number;
   public followersAmount: number;
-  public favs
-  public following 
+  public favs;
+  public following;
   public count: number;
-  public numberComment 
-  public resultRecipe : Recipe[]
+  public numberComment;
+  public resultRecipe: Recipe[];
 
 
 
     constructor(public apiComments: CommentsService, private servicio: CookbookService, public followers: FollowersService, private router: Router,  private userService: UserService, private apiSearchRecipe: SearchRecipeService, private favService:  FavoriteService) {
       this.animation = false;
-      this.favs  =  this.favService.favoriteRecipe
-      this.numberComment = this.apiComments.numberComment
+      this.favs  =  this.favService.favoriteRecipe;
+      this.numberComment = this.apiComments.numberComment;
       this.following = this.followers.following;
 
     }
   
     showProfile(){
-      
         this.profile = this.userService.userProfile;
-        this.followers.followAmount(this.profile.user_id).subscribe((data: number) => 
-        this.followingAmount = data);
-        this.followers.followersAmount(this.profile.user_id).subscribe((data: number) =>
-        this.followersAmount = data);
-        this.favService.getFavoritefromUser(this.userService.userProfile.user_id).subscribe((data)=> {
-  
-        return this.resultRecipe = data;
-        })
+        this.followers.followAmount(this.profile.user_id).subscribe((data: number) => this.followingAmount = data);
+        this.followers.followersAmount(this.profile.user_id).subscribe((data: number) => this.followersAmount = data);
+        this.favService.getFavoritefromUser(this.userService.userProfile.user_id).subscribe((data) => this.resultRecipe = data)
     }
 
    
@@ -59,14 +52,14 @@ export class UserFavoriteRecipeComponent implements OnInit {
 
     popUp(user_fav_id) {
       this.eliminar = user_fav_id
-        if ( document.getElementById('delete-window').style.visibility === 'visible') {
-            document.getElementById('delete-window').style.visibility = 'hidden';
-            this.animation = false;
-        } else {
-            document.getElementById('delete-window').style.visibility = 'visible';
-            document.getElementById('edit-profile').style.opacity = '1';
-            this.animation = true;
-        }
+      if ( document.getElementById('delete-window').style.visibility === 'visible') {
+          document.getElementById('delete-window').style.visibility = 'hidden';
+          this.animation = false;
+      } else {
+          document.getElementById('delete-window').style.visibility = 'visible';
+          document.getElementById('edit-profile').style.opacity = '1';
+          this.animation = true;
+      }
     }
 
     goToFollowers() {
@@ -80,9 +73,6 @@ export class UserFavoriteRecipeComponent implements OnInit {
 
   ngOnInit(): void {
       this.showProfile();
-     
-     
-   
   }
 
 }

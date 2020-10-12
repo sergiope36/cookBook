@@ -7,8 +7,6 @@ import { UserService } from '../../shared/user.service';
 import { Router } from '@angular/router';
 import { User } from '../../models/user';
 import { AngularFireAuth } from '@angular/fire/auth';
-import { auth } from 'firebase/app';
-
 
 
 @Component({
@@ -28,15 +26,12 @@ export class LoginComponent implements OnInit {
     this.user = <User>{};
     this.apiNavigation.login = false;
     this.logIn = false;
-
-
   }
 
     show() {
 
       if (document.getElementById('edit-profile').style.visibility === 'visible') {
         this.animation = false;
-
         document.getElementById('edit-profile').style.visibility = 'hidden';
       } else {
         this.animation = true;
@@ -47,43 +42,34 @@ export class LoginComponent implements OnInit {
 
     }
 
-
     onSubmit(userForm: NgForm) { 
       this.user = new User(userForm.value.user_name, userForm.value.password);
-      
       this.userService.userProfile = this.user;
-      
+
       if(userForm.valid){
-        this.userService.getUsers().subscribe((data: User [])=>{
-        const dataFiltered = data.filter(item => item.password === this.userService.userProfile.password);
-       
-        if(dataFiltered.length === 0){
-          this.logIn = true;
-         
+        this.userService.getUsers().subscribe((data: User []) => {
+          const dataFiltered = data.filter(item => item.password === this.userService.userProfile.password);
 
-        }else{
+          if(dataFiltered.length === 0){
+            this.logIn = true;
 
-         this.userService.userProfile = dataFiltered[0];
-          this.localStorage.set('log', this.userService.userProfile);
-          this.router.navigate(['/', 'searchRecipe']);
+          }else{
+            this.userService.userProfile = dataFiltered[0];
+            this.localStorage.set('log', this.userService.userProfile);
+            this.router.navigate(['/', 'searchRecipe']);
 
-        }
-      })
-        
-        
+          }
+        });
       }
-          
       if(userForm.invalid){
         Object.values( userForm.controls ).forEach ( control =>{
-
           control.markAsTouched();
-
-        })
-      }       
+        });
+      }
     }
 
 
-  ngOnInit(): void {  
+  ngOnInit(): void {
 
 
   }

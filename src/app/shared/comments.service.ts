@@ -13,7 +13,6 @@ export class CommentsService {
   public numberComment: number;
 
   constructor(private http: HttpClient) {
-   
   }
 
   showComments(id: number) {

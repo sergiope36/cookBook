@@ -16,7 +16,6 @@ export class FollowersService {
   public followers;
 
   constructor(private http: HttpClient) {
-
     this.following;
     this.followStatus = false;
     this.followers;
@@ -24,8 +23,8 @@ export class FollowersService {
   }
 
   nuevoSeguidor(seguidor: Followed){
-    this.followers= this.http.post(this.url + '/seguir',seguidor )
-    return this.followers
+    this.followers = this.http.post(this.url + '/seguir',seguidor )
+    return this.followers;
   }
 
   getFollowing(id: number) {
@@ -35,9 +34,7 @@ export class FollowersService {
 
   getFollowers(user_id){
     return this.http.get(this.url + '/followers/' + user_id);
-    }
-
-
+  }
 
   getFollowingStatus(user_id, follower_id) {
     return this.http.get(this.url + '/followed/status/' + user_id + '/' + follower_id);
@@ -60,18 +57,13 @@ export class FollowersService {
     return this.http.get(this.url + '/followers/count/' + id);
   }
 
-  /*insertFollower(followers_id, user_id){
-     return this.http.post(this.url + '/followed/', followers_id, user_id)
-    }
-*/
   insertFollowing(user: Followed) {
-
     return this.http.post(this.url + '/followed/', user)
   }
 
-  unfollow(id: number, user_id:number) {
+  unfollow(id: number, user_id: number) {
     const httpOptions = {
-      headers: new HttpHeaders({ 
+      headers: new HttpHeaders({
         'Content-Type': 'application/json' }),
         body: {
           id: id,

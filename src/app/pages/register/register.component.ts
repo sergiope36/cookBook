@@ -6,9 +6,6 @@ import { LocalStorageService } from './../../shared/local-storage.service';
 import { FormGroup, FormBuilder, Validators} from '@angular/forms';
 import { ModalService } from 'src/app/_modal';
 
-
-
-
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
@@ -17,29 +14,29 @@ import { ModalService } from 'src/app/_modal';
 export class RegisterComponent implements OnInit {
 
   public user: User;
-  public forma : FormGroup;
+  public forma: FormGroup;
   public regis: boolean;
-  public bodyText: string
+  public bodyText: string;
 
   constructor( private modalService:ModalService ,private fb : FormBuilder, private userService: UserService, private router: Router, private localStorage: LocalStorageService) {
   
-    this.createForm()
+    this.createForm();
     this.regis = false;
-  }  
+  }
 
   registerSocial(provider){
     this.userService.registerSocial(provider);
   }
   
-openModal(id:string){
-this.modalService.open(id);
-}
-closeModal(id:string){
-  this.modalService.close(id);
-  
-}
+  openModal(id: string){
+    this.modalService.open(id);
+  }
+  closeModal(id: string){
+    this.modalService.close(id);
+
+  }
   ngOnInit(): void {
-    this.bodyText = "Usuario registrado"
+    this.bodyText = 'Usuario registrado';
   }
 
   get invalidName(){
@@ -63,7 +60,6 @@ closeModal(id:string){
 
 
   createForm(){
-
     this.forma = this.fb.group({
 
       user_name : ['',[Validators.required]],
@@ -93,45 +89,29 @@ closeModal(id:string){
 
   save(forma){     
       if(this.forma.valid){
-       
         this.userService.getUsers().subscribe((data: User[])=>{
         const dataFiltered = data.filter(item => item.user_name === this.forma.value.user_name);
-       
         if(dataFiltered.length === 0){
-         
           this.userService.registerUser(new User(this.forma.value.user_name,this.forma.value.password,this.forma.value.email)).subscribe((data1: any) => {
-          
-           
             this.userService.getUser(data1.insertId).subscribe((data:User)=>{
-              
               this.userService.userProfile = data[0];
               this.localStorage.set('log', this.userService.userProfile);
-              this.forma.reset()
-             
-              
-              
-             
-
+              this.forma.reset();
             })
             this.openModal("register-ok")
-           
 
             })
-          
-
+  
             }else{
 
               this.regis = true;
             }
-            
           })
           if(this.forma.invalid){
             Object.values( this.forma.controls ).forEach ( control =>{
-    
               control.markAsTouched();
-    
-            })
-          }
+            });
+          };
   }
 
 }}

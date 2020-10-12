@@ -29,52 +29,49 @@
        
             <div class="icon">      
 
-            <div>
+                <div> </div>
+                
+            </div>    
 
+        </div> 
+        <hr>
+        <div class="container-columns">
+            <div class="column"> 
+                <div class="tittle">
+                    <p>Seguidores</p> 
+                </div>   
+
+                <div class="users" *ngFor = "let followers of followers.followers">
+                    <div class="pic-profile">
+                        <img [src]="followers.picture">
+                    </div>
+
+                    <div class="name">
+                        <p>{{followers.user_name}}</p>
+                    </div>   
+                </div> 
             </div>
             
-        </div>    
-
-    </div>
-            
-    <hr>
-    <div class="container-columns">
-        <div class="column"> 
-            <div class="tittle">
-                <p>Seguidores</p> 
-            </div>   
-
-            <div class="users" *ngFor = "let followers of followers.followers">
-                <div class="pic-profile">
-                    <img [src]="followers.picture">
-                </div>
-
-                <div class="name">
-                    <p>{{followers.user_name}}</p>
+            <div class="column">
+                <div class="tittle">
+                    <p>Seguidos</p>
                 </div>   
-            </div> 
+
+                <div class="users" *ngFor ="let follow of userFollowing; let i = index" >
+                    <div class="pic-profile">
+                        <img [src]="follow.picture" alt="">
+                    </div>
+
+                    <div class="name">
+                        <p>{{follow.user_name}}</p>
+                    </div>   
+
+                    <div class="follow">
+                        <a (click)="unfollow(follow.followers_id)">Dejar de seguir</a>
+                        
+                    </div>
+                </div> 
+            </div>    
         </div>
-        
-        <div class="column">
-            <div class="tittle">
-                <p>Seguidos</p>
-            </div>   
-
-            <div class="users" *ngFor ="let follow of userFollowing; let i = index" >
-                <div class="pic-profile">
-                    <img [src]="follow.picture" alt="">
-                </div>
-
-                <div class="name">
-                    <p>{{follow.user_name}}</p>
-                </div>   
-
-                <div class="follow">
-                    <a (click)="unfollow(follow.followers_id)">Dejar de seguir</a>
-                    
-                </div>
-            </div> 
-        </div>    
     </div>
-</div>
 </div>

@@ -4,11 +4,9 @@ import { Injectable } from '@angular/core';
   providedIn: 'root'
 })
 export class TriggersService {
-  
   public login: boolean;
 
   constructor() {
-
     this.login = false;
 
   }

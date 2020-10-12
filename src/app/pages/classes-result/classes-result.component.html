@@ -4,29 +4,27 @@
       <p>Clases de cocina</p>
       <hr>
   </div>  
-<div class="row row-cols-1 row-cols-md-2">
-  <div class="col mb-4" *ngFor="let lesson of lessons; let i = index">
-    <div class="card animated fadeIn">
 
-      <a (click)= "showLesson(lesson.lesson_id)"><img [src]="lesson.image" #lessonId [alt]="lesson.title"></a>
+  <div class="row row-cols-1 row-cols-md-2">
+    <div class="col mb-4" *ngFor="let lesson of lessons; let i = index">
+      <div class="card animated fadeIn">
 
+        <a (click)= "showLesson(lesson.lesson_id)"><img [src]="lesson.image" #lessonId [alt]="lesson.title"></a>
 
-      <div class="card-body"> 
-     
-         
-        <p class="card-title">{{lesson.title}}</p>
-        <p class="card-text"><br>
-          <i class="far fa-calendar-alt"></i> {{ lesson.date  | date: 'dd-MM-yyyy'}} -
-          <i class="far fa-clock"></i>  {{ lesson.timetable }} h -
-          <i class="fas fa-info-circle"></i> {{ lesson.dificulty}} -
-          <i class="fas fa-euro-sign"></i>  {{ lesson.price }} 
-         </p>
+        <div class="card-body"> 
+          
+          <p class="card-title">{{lesson.title}}</p>
+          <p class="card-text"><br>
+            <i class="far fa-calendar-alt"></i> {{ lesson.date  | date: 'dd-MM-yyyy'}} -
+            <i class="far fa-clock"></i>  {{ lesson.timetable }} h -
+            <i class="fas fa-info-circle"></i> {{ lesson.dificulty}} -
+            <i class="fas fa-euro-sign"></i>  {{ lesson.price }} 
+          </p>
+        
+        </div>
       
       </div>
-     
+      <hr>
     </div>
-    <hr>
- </div>
-</div>
- 
+  </div>
 </div>

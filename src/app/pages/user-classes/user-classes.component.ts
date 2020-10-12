@@ -13,12 +13,12 @@ import { Router } from '@angular/router';
   styleUrls: ['./user-classes.component.scss']
 })
 export class UserClassesComponent implements OnInit {
-  public lesson :Lessons [];
+  public lesson:Lessons[];
   public lessons: Lessons[];
   public profile: User;
-  public allMyLessons: Lessons []
+  public allMyLessons: Lessons[];
   public animation: boolean;
-  public eliminar
+  public eliminar;
   public teacher: User;
   public followingAmount: number;
   public followersAmount: number;
@@ -39,7 +39,6 @@ export class UserClassesComponent implements OnInit {
     this.userService.getLessonfromUser(lesson_id).subscribe((data)=> {
       this.teacher = data[0];
       this.userService.teacher = data[0]
-      console.log("teacher",this.userService.teacher)
     this.router.navigate(["/", "lesson"])
     })
   }
@@ -57,15 +56,15 @@ export class UserClassesComponent implements OnInit {
 
   popUp(lesson_id) {
     this.eliminar = lesson_id
-      if ( document.getElementById('delete-window').style.visibility === 'visible') {
-          document.getElementById('delete-window').style.visibility = 'hidden';
-          this.animation = false;
-      } else {
-          document.getElementById('delete-window').style.visibility = 'visible';
-          document.getElementById('edit-profile').style.opacity = '1';
-          this.animation = true;
-      }
-  }
+    if ( document.getElementById('delete-window').style.visibility === 'visible') {
+        document.getElementById('delete-window').style.visibility = 'hidden';
+        this.animation = false;
+    } else {
+        document.getElementById('delete-window').style.visibility = 'visible';
+        document.getElementById('edit-profile').style.opacity = '1';
+        this.animation = true;
+    }
+}
 
   deleteLesson(){
     this.apiService.removeLesson(this.eliminar).subscribe(data => this.ngOnInit());

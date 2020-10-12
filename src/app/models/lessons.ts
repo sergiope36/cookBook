@@ -1,5 +1,4 @@
 export class Lessons {
-    
     public title: string;
     public date: Date;
     public timetable: string;
@@ -12,7 +11,6 @@ export class Lessons {
     public lesson_id?: number;
 
     constructor (title: string,  date: Date, timetable: string, dificulty: string, price: number,ingredients:string, description:string,image: string, user_id?:number){
-        
         this.title = title;
         this.date = date;
         this.timetable = timetable;

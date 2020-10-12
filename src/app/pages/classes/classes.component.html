@@ -37,15 +37,12 @@
                 <img src ="{{teacher.image}}"  [alt]="">
             </div>
             <div>
-                
-
                 <p class="card-text"><br>
                     <i class="far fa-calendar-alt"></i> {{ teacher.date | date: 'dd-MM-yyyy' }} <br>
                     <i class="far fa-clock"></i>  {{ teacher.timetable }} h <br>
                     <i class="fas fa-info-circle"></i> {{ teacher.dificulty}} <br>
                     <i class="fas fa-euro-sign"></i>  {{ teacher.price }} 
-                   </p>
-
+                </p>
 
                 <button>Comprar</button>
             </div>
@@ -54,17 +51,14 @@
             <div >
                 <p class = "title"> <strong>Lo que vas a necesitar:</strong></p>
                 <p>
-                    {{teacher.ingredients}}
-                    
+                    {{teacher.ingredients}}   
                 </p>
             </div>
 
-        
             <div>
                 <p class = "title"> <strong>Lo que vas a aprender:</strong></p>
-                <p>{{teacher.description}}
-                </p>
+                <p>{{teacher.description}}</p>
             </div>
+        </div>
     </div>
-</div>
 </div>

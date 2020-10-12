@@ -9,14 +9,10 @@ import { Router } from '@angular/router';
   styleUrls: ['./recipes.component.scss']
 })
 export class RecipesComponent implements OnInit {
-
-  
   public arrow: void;
   public test: string;
   public resultRecipes: Recipe[];
   public resultRecipe: Recipe[] ;
-
-
 
   constructor(public apiSearchRecipe: SearchRecipeService, private cookbookService: CookbookService, private router: Router ) { }
 

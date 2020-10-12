@@ -23,27 +23,27 @@ export class FormPublishRecipesComponent implements OnInit {
 
   constructor(private fb: FormBuilder, public apiSearchRecipe: SearchRecipeService, private userService: UserService) {
 
-      this.animation = false;
-      this.dificultyLevels = ['Fácil', 'Media', 'Difícil'];
-      this.foodOptions = ['Vegana', 'Saludable', 'Picoteo', 'Postres'];
-      this.createForm();
-      this.ingredientsSelected = [];
+    this.animation = false;
+    this.dificultyLevels = ['Fácil', 'Media', 'Difícil'];
+    this.foodOptions = ['Vegana', 'Saludable', 'Picoteo', 'Postres'];
+    this.createForm();
+    this.ingredientsSelected = [];
   }
 
   show() {
-      if (document.getElementById('sucess').style.visibility === 'visible') {
-        this.animation = false;
-        document.getElementById('sucess').style.visibility = 'hidden';
-      }
+    if (document.getElementById('sucess').style.visibility === 'visible') {
+      this.animation = false;
+      document.getElementById('sucess').style.visibility = 'hidden';
+    }
   }
 
   showIngredients() {
-      this.apiSearchRecipe.showIngredients().subscribe((data: Ingredients[]) => {
-          this.ingredients = data;
-          for (let i = 0; i < this.ingredients.length; i++) {
-              this.dropdownList[i].ingredients = this.ingredients[i].name;
-           }
-      });
+    this.apiSearchRecipe.showIngredients().subscribe((data: Ingredients[]) => {
+        this.ingredients = data;
+        for (let i = 0; i < this.ingredients.length; i++) {
+            this.dropdownList[i].ingredients = this.ingredients[i].name;
+          }
+    });
   }
 
   onAdd(event: any) {
@@ -95,7 +95,6 @@ export class FormPublishRecipesComponent implements OnInit {
 
   // Create a form
   createForm() {
-
     this.form = this.fb.group({
       titulo: ['', [Validators.required, Validators.minLength(5)]],
       ingredientes: ['', [Validators.required, Validators.minLength(1)]],
@@ -116,7 +115,6 @@ export class FormPublishRecipesComponent implements OnInit {
     this.fb.control(element);
   }
 
-
   onSubmit() {
      if (this.form.invalid) {
         Object.values (this.form.controls).forEach(control => {
@@ -130,9 +128,7 @@ export class FormPublishRecipesComponent implements OnInit {
         this.recipe = new Recipe(this.userService.userProfile.user_id, this.form.value.titulo, this.ingredientsSelected, this.form.value.duracion, this.form.value.dificultad, this.form.value.comida, this.form.value.descripcion, this.form.value.foto);
 
         this.apiSearchRecipe.newRecipes(this.recipe).subscribe(data => data);
-
         this.form.reset();
-
       }
   }
 }

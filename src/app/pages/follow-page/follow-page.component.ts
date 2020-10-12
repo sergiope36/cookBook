@@ -23,7 +23,7 @@ export class FollowPageComponent implements OnInit {
   public followingAmount: number;
   public followersAmount: number;
   public allFollowers;
-  public followFollowers: boolean 
+  public followFollowers: boolean;
 
   constructor(private cookbookService: CookbookService, public followers: FollowersService, public apiSearchRecipe: SearchRecipeService, private userService: UserService) {
     this.count = 0;
@@ -34,14 +34,12 @@ export class FollowPageComponent implements OnInit {
   showProfile(){
     this.followers.followStatus;
     this.profile = this.userService.userProfile;
-    this.followers.followingAmount(this.userService.userProfile.user_id).subscribe((data: number) => this.followingAmount = data)
-    this.followers.getFollowing(this.userService.userProfile.user_id).subscribe((data: User[]) => { 
-      this.userFollowing = data
-    })
+    this.followers.followingAmount(this.userService.userProfile.user_id).subscribe((data: number) => this.followingAmount = data);
+    this.followers.getFollowing(this.userService.userProfile.user_id).subscribe((data: User[]) => this.userFollowing = data);
     this.followers.followersAmount(this.profile.user_id).subscribe((data: number) =>this.followersAmount = data);
     this.followers.getFollowers(this.userService.userProfile.user_id).subscribe((data: Followed []) =>{
     this.followers.followers = data
-    this.followFollowers = false
+    this.followFollowers = false;
     
     })
   }
@@ -49,31 +47,16 @@ export class FollowPageComponent implements OnInit {
   unfollow(user_id) {
     this.followers.unfollow( user_id, this.userService.userProfile.user_id ).subscribe((data) => {
     this.followers.followStatus = false;
-    this.ngOnInit()
+    this.ngOnInit();
        
     });
   }
-
-/*Para la version 2.0
-  followUser(user_id){
-  let seguidor = new Followed(   user_id, this.userService.userProfile.user_id,  true)
-    this.followers.nuevoSeguidor(seguidor).subscribe((data)=> {
-    this.followers.following = data
-     console.log("seguidor", data)
-    });
-    this.followers.followStatus = true;
-    this.followFollowers = true
-    this.ngOnInit()
-  }
-*/
-
   
   goBack(){
-    this.arrow = this.cookbookService.backClicked()
+    this.arrow = this.cookbookService.backClicked();
   }
 
   ngOnInit(): void {
-
     this.showProfile();
   }
 

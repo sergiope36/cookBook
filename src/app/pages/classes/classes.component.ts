@@ -13,16 +13,15 @@ export class ClassesComponent implements OnInit {
   public arrow: void;
   public lesson: Lessons[];
   public lessonTeacher: Lessons;
-  public teacher
+  public teacher;
 
-  constructor(private cookbookService: CookbookService,private apiService: LessonServiceService, private userService: UserService)
-   { 
-    this.lesson
-    this.teacher = this.userService.teacher 
+  constructor(private cookbookService: CookbookService,private apiService: LessonServiceService, private userService: UserService){ 
+      this.lesson;
+      this.teacher = this.userService.teacher;
   }
 
   goBack(){
-    this.arrow = this.cookbookService.backClicked()
+      this.arrow = this.cookbookService.backClicked();
   }
  
   ngOnInit(): void {

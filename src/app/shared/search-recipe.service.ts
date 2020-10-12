@@ -14,33 +14,28 @@ export class SearchRecipeService {
   public resultRecipe: Recipe;
   public ingredients: Ingredients[];
 
-
   constructor(private http: HttpClient) {
-
       this.resultRecipes = [];
 
   }
 
   showIngredients() {
-      return this.http.get(this.url + '/ingredients');
+    return this.http.get(this.url + '/ingredients');
   }
 
   showRecipes() {
-      return this.http.get(this.url + '/');
+    return this.http.get(this.url + '/');
   }
 
   showRecipesUser(id: number) {
-   
     return this.http.get(this.url + '/recipe/' + id);
 }
 
   searchRecipes(ingredients: string) {
-
-      return this.http.get(this.url + ingredients);
+    return this.http.get(this.url + ingredients);
   }
 
   newRecipes(recipe: Recipe) {
-
     return this.http.post(this.url + '/recipes', recipe); 
   }
 

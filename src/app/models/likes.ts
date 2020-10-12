@@ -6,7 +6,6 @@ export class Likes {
 
 
     constructor (user_id: number, recipe_id: number, count:number){
-       
         this.user_id = user_id;
         this.recipe_id = recipe_id;
 

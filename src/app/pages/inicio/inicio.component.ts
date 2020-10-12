@@ -2,9 +2,8 @@ import { User } from './../../models/user';
 import { UserService } from 'src/app/shared/user.service';
 import { LocalStorageService } from './../../shared/local-storage.service';
 import { TriggersService } from './../../shared/triggers.service';
-import { CookbookService } from 'src/app/shared/cookbook.service';
 import { Component, OnInit, EventEmitter, Output } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -54,7 +53,6 @@ export class InicioComponent implements OnInit {
   ngOnInit(): void {
     this.logInKeep();
   }
-
 
   logInKeep() {
     if (this.localStorage.get('log') !== null) {

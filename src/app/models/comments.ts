@@ -1,5 +1,4 @@
 export class Comments {
-
     public comment_id?: number;
     public user_name: string;
     public description: string;

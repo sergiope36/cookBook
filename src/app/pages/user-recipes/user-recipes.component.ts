@@ -13,7 +13,6 @@ import { User } from '../../models/user';
   styleUrls: ['./user-recipes.component.scss']
 })
 export class UserRecipesComponent implements OnInit {
-
   public profile: User;
   public resultRecipe: Recipe[];
   public numberComment: number;
@@ -25,7 +24,6 @@ export class UserRecipesComponent implements OnInit {
   public likes: number;
 
   constructor( public likeService:LikesService, private router: Router, public apiSearchRecipe: SearchRecipeService, private userService: UserService, public followers: FollowersService) {
-
     this.animation = false;
 
    }
@@ -64,9 +62,7 @@ export class UserRecipesComponent implements OnInit {
 
   deleteRecipe(){
       this.apiSearchRecipe.deleteRecipe(this.recipe_id).subscribe(data => this.ngOnInit());
-     
   }
-
 
   ngOnInit(): void {
     

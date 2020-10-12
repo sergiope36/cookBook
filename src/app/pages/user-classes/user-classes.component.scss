@@ -4,7 +4,7 @@
     display: flex;
     list-style-type: none;
     a {
-        font-size: 1.3rem;
+        font-size: 1.1rem;
         padding-bottom: 30px;
         &:nth-child(1){
             padding-right: 40px;
@@ -27,12 +27,11 @@ hr{
     display:grid;
     grid-template-columns: 40% 60%;
     grid-gap: 20px;
-    padding: 4% 20px 4px 10px;
+    padding: 4% 30px 20px 10px;
     
     .recipePic{
         width:100%;
-    }
-        
+    }     
         .receta{
             font-size:1rem;
             display: flex;
@@ -50,27 +49,23 @@ hr{
                 -webkit-line-clamp: 4;
                 -webkit-box-orient: vertical;
             }
-           
             
         }
-       
             .delete{
                 text-align: center !important;
                 font-size: small;
                 color: gray;
-                margin-bottom: 0;
-                padding-bottom: 0;
+                
             }
                 
             .moreInfo{
                 font-size:inherit;
                 color: white;   
                 width: 100px;     
-               
                 float: right;
+               
                 
             }
-        
    }
 
 // popup delete

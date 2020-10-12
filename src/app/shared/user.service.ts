@@ -6,9 +6,8 @@ import { Injectable } from '@angular/core';
 import {HttpClient, HttpHeaders, HttpParams} from '@angular/common/http';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { auth } from 'firebase/app';
-
 import {User} from '../models/user';
-import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
+
 
 @Injectable({
   providedIn: 'root'
@@ -17,48 +16,38 @@ export class UserService {
 
   private url = "http://localhost:3000/user";
   public userProfile: User;
-  public allUsers
+  public allUsers;
   public userRecipes: Recipe[];
-  public teacher
+  public teacher;
 
   constructor(private http: HttpClient, private router: Router, public afAuth: AngularFireAuth, private afs: AngularFirestore, private localStorage: LocalStorageService) {
-     
   }
 
     getUsers() {
       this.allUsers = this.http.get(this.url);
-      console.log(this.allUsers)
-      return this.allUsers
-      
+      return this.allUsers;
     }
-    getUser(id: any) {
 
-    return this.http.get(this.url + "/" + id);
+    getUser(id: any) {
+      return this.http.get(this.url + "/" + id);
   }
 
     getLessonfromUser(id_lesson){
-      this.teacher = this.http.get(this.url + "/lesson/" + id_lesson)
-      console.log("servicio", this.teacher)
-      return this.teacher
+      this.teacher = this.http.get(this.url + '/lesson/' + id_lesson)
+      return this.teacher;
     }
 
     loginUser(user:User){
-
-    return this.http.post(this.url + '/login', user);
+      return this.http.post(this.url + '/login', user);
     }
 
-   /* loginUserSocial2(user:User){
-
-      return this.http.post(this.url + '/login/social', user);
-      }*/
-
     registerUser (newUser: User) {
-      return this.http.post(this.url + "/register", newUser)
+      return this.http.post(this.url + '/register', newUser)
     }
     
 
     editUserProfile (editUser: User) {
-      return this.http.put(this.url + "/edit_profile" , editUser)
+      return this.http.put(this.url + '/edit_profile', editUser)
     }
 
     registerSocial(provider) {
@@ -89,9 +78,7 @@ export class UserService {
           });
           }
       });
-
-
-      }); 
+    }); 
   }
 
   loginUserSocial() {

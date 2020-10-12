@@ -4,7 +4,7 @@
     display: flex;
     list-style-type: none;
     a {
-        font-size: 1.3rem;
+        font-size: 1.1rem;
         padding-bottom: 30px;
         &:nth-child(1){
             padding-right: 40px;
@@ -24,7 +24,7 @@ hr{
     display:grid;
     grid-template-columns: 40% 60%;
     grid-gap: 20px;
-    padding: 4% 20px 4px 10px;
+    padding: 4% 20px 20px 10px;
         .recipePic{
             width:100%;
         }

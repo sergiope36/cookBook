@@ -15,9 +15,8 @@ import { CookbookService } from 'src/app/shared/cookbook.service';
 import { FavoriteService } from 'src/app/shared/favorite.service';
 import { LikesService } from 'src/app/shared/likes.service'
 import { Favorite } from 'src/app/models/favorite';
-import { Likes} from 'src/app/models/likes'
+import { Likes} from 'src/app/models/likes';
 
-  
 
 @Component({
   selector: 'app-recipe',
@@ -47,17 +46,13 @@ export class RecipeComponent implements OnInit {
   public update: boolean;
   public updateOwner: boolean;
   public favorites: boolean;
-  
- 
 
     constructor( public router: Router, private fb: FormBuilder, private likeService: LikesService, private favService: FavoriteService, private userService: UserService, public apiSearchRecipe: SearchRecipeService, private cookbookService: CookbookService, public apiComments: CommentsService, public followers: FollowersService) {
-     
       this.hideDiv = false;
       this.ingredientsSelected = [];
       this.update = false;
       this.animation = false;
       this.updateOwner = false;
-  
     } 
 
     showRecipeResult() {
@@ -96,34 +91,31 @@ export class RecipeComponent implements OnInit {
             foto: [this.resultRecipe.picture]
         });
 
-        this.likesNumber() 
-
+        this.likesNumber();
 
         let myFav = new Favorite(0, this.resultRecipe.recipe_id, this.userService.userProfile.user_id);
-            this.favService.comprobarFav(myFav).subscribe((data: any) =>  {
-              if(data.length != 0 ) {
-                this.favorites = true;
-              }else {
-                  this.favorites = false;
-              }
-          })
+        this.favService.comprobarFav(myFav).subscribe((data: any) =>  {
+            if (data.length !== 0 ) {
+            this.favorites = true;
+            } else {
+                this.favorites = false;
+            }
+        });
 
-          let like = new Likes (this.userService.userProfile.user_id,this.resultRecipe.recipe_id,0)
-        this.likeService.comprobarLikes(like).subscribe((data:any)=>{
+        let like = new Likes (this.userService.userProfile.user_id,this.resultRecipe.recipe_id,0)
+        this.likeService.comprobarLikes(like).subscribe((data: any) =>{
             if(data.length != 0 ) {
               this.colorHat = true;
             }else {
                 this.colorHat = false;
             }
-        })
-   
-      
+        });
+
     }
 
     postComment(description: string, recipe_id: number){
 
         let comment = new Comments(this.userService.userProfile.user_name, description, this.resultRecipe.recipe_id, this.userService.userProfile.user_id);
-
         this.apiComments.createComment(comment).subscribe((data) => {
             this.showRecipeResult();
             this.ngOnInit;
@@ -164,21 +156,18 @@ export class RecipeComponent implements OnInit {
         }else {
           this.favService.addFavorite(myFav).subscribe((data)=> {
             this.favorites = true;
-        })
+        });
       }
-    })
+    });
     }
 
     addLike(){
         let like = new Likes (this.userService.userProfile.user_id,this.resultRecipe.recipe_id,0)
-        this.likeService.comprobarLikes(like).subscribe((data:any)=>{
-        
+        this.likeService.comprobarLikes(like).subscribe((data: any)=>{
             if(data.length>0){
                 like = data[0]
                 this.likeService.likes = data[0]
                 this.colorHat = false;
-
-
                 this.likeService.removeLike(like.likes_id).subscribe((data)=>{
                 this.likesNumber()
             })
@@ -219,8 +208,6 @@ export class RecipeComponent implements OnInit {
         return this.form.get('foto').invalid && this.form.get('foto').touched;
     }
 
-    
-
     showIngredients() {
         this.apiSearchRecipe.showIngredients().subscribe((data: Ingredients[]) => {
             this.ingredients = data;
@@ -259,15 +246,13 @@ export class RecipeComponent implements OnInit {
         this.apiSearchRecipe.updateRecipe(updatedRecipe).subscribe(data=>{
           
         })
-        this.resultRecipe.title = this.form.value.titulo
-        this.resultRecipe.type = this.form.value.comida
-        this.resultRecipe.dificulty = this.form.value.dificultad
-        this.resultRecipe.duration =  this.form.value.duracion
-        this.resultRecipe.description =  this.form.value.descripcion
-        this.resultRecipe.picture =  this.form.value.foto
-      
-        this.ingredientsRecipe = this.ingredientsSelected
-       
+        this.resultRecipe.title = this.form.value.titulo;
+        this.resultRecipe.type = this.form.value.comida;
+        this.resultRecipe.dificulty = this.form.value.dificultad;
+        this.resultRecipe.duration =  this.form.value.duracion;
+        this.resultRecipe.description =  this.form.value.descripcion;
+        this.resultRecipe.picture =  this.form.value.foto;
+        this.ingredientsRecipe = this.ingredientsSelected;
       }
     }
 
@@ -276,7 +261,6 @@ export class RecipeComponent implements OnInit {
           this.animation = false;
           this.update = false;
           document.getElementById('udpateRecipe').style.visibility = 'hidden';
-        
 
       } else {
           document.getElementById('udpateRecipe').style.visibility = 'visible';
@@ -284,13 +268,9 @@ export class RecipeComponent implements OnInit {
           this.router.navigate(['/', 'recipe']);
           this.animation = true;
           this.update = true;
-          
       }
-    
+
     }
-
-  
-
 
   ngOnInit(): void {
        this.showRecipeResult();

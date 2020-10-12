@@ -77,7 +77,7 @@ export class FormPublishClassComponent implements OnInit {
 
   // get values of the radio-buttons
   valueDificulty(element) {
-   this.fb.control(element);
+    this.fb.control(element);
   }
 
  
@@ -93,9 +93,7 @@ export class FormPublishClassComponent implements OnInit {
       let myLesson = new Lessons(this.form.value.titulo, this.form.value.fecha, this.form.value.horario, this.form.value.dificultad, this.form.value.precio, this.form.value.ingredientes, this.form.value.descripcion, this.form.value.foto, this.userService.userProfile.user_id)
       this.apiService.addLesson(myLesson).subscribe((data) => {
         this.resetForm();
-      })
-      
-      
+      });
     }
   }
 }

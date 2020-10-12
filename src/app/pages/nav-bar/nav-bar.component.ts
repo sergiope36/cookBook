@@ -7,8 +7,6 @@ import { Component, OnInit, Input } from '@angular/core';
 import { User } from '../../models/user';
 import { UserService } from '../../shared/user.service';
 
-
-
 @Component({
   selector: 'app-nav-bar',
   templateUrl: './nav-bar.component.html',
@@ -20,15 +18,11 @@ export class NavBarComponent implements OnInit {
   public profileUser: User;
   public recipesUser: Recipe[];
   public navigation: boolean;
-
-  
   public login: boolean;
 
   constructor( private router: Router, private userService: UserService, public apiSearchRecipe: SearchRecipeService, public apiNavigation: TriggersService, public localStorage: LocalStorageService) {
-
     this.animation = false;
     this.profileUser = this.userService.userProfile;
-    
 
   }
 
@@ -48,24 +42,17 @@ export class NavBarComponent implements OnInit {
     }
 
     editProfile( password: string, email: string, picture: string){
-      
       let user1 = new User(this.profileUser.user_name, password, email, picture,  this.profileUser.user_id);
-
       this.userService.editUserProfile(user1).subscribe( data => this.user = data);
       this.animation = false;
-
       document.getElementById('edit-profile').style.visibility = 'hidden';
-
-
       this.profileUser.picture = picture;
       this.profileUser.password = password;
       this.profileUser.email = email;
-      
     }
 
 
     showProfile(){
-
       this.profileUser = this.userService.userProfile;
       this.login = this.apiNavigation.login;
     }
@@ -93,7 +80,6 @@ export class NavBarComponent implements OnInit {
   
     }
 
-
     logOut(){
       this.localStorage.remove('log');
       this.localStorage.clear();
@@ -101,8 +87,6 @@ export class NavBarComponent implements OnInit {
       this.profileUser = {user_name: ''};
       this.router.navigate(['/', 'welcome']);
     }
-
-
 
   ngOnInit(): void {
     this.showProfile();
